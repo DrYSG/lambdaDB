@@ -1,0 +1,23 @@
+org: ygutfreund
+app: lambdadb
+# serverless.yml
+
+service: aws-lambdadb
+provider:
+  name: aws
+  stage: dev
+  region: us-east-2
+  runtime: nodejs10.x
+functions:
+  graphql:
+    # this is formatted as <FILENAME>.<HANDLER>
+    handler: main.handler
+    events:
+    - http:
+        path: lambdadb
+        method: post
+        cors: true
+    - http:
+        path: lambdadb
+        method: get
+        cors: true
