@@ -145,7 +145,21 @@
                     "lambdaRole"
                   ]
                 ]
-              }
+              },
+              "ManagedPolicyArns": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+                    ]
+                  ]
+                }
+              ]
             }
           },
           "DbConnLambdaFunction": {
@@ -155,7 +169,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambdadb/dev/1574093130059-2019-11-18T16:05:30.059Z/lambdadb.zip"
+                "S3Key": "serverless/lambdadb/dev/1574094607571-2019-11-18T16:30:07.571Z/lambdadb.zip"
               },
               "FunctionName": "lambdadb-dev-dbConn",
               "Handler": "main.handler",
@@ -167,21 +181,31 @@
                 ]
               },
               "Runtime": "nodejs10.x",
-              "Timeout": 6
+              "Timeout": 6,
+              "VpcConfig": {
+                "SecurityGroupIds": [
+                  "sg-a1e6f4c3"
+                ],
+                "SubnetIds": [
+                  "subnet-53b45038",
+                  "subnet-4a2a7830",
+                  "subnet-1469d358"
+                ]
+              }
             },
             "DependsOn": [
               "DbConnLogGroup",
               "IamRoleLambdaExecution"
             ]
           },
-          "DbConnLambdaVersionStWKj9Fq6mdCaIZ2vrLoIJs0G2lMRxPJecMYPDAMCGs": {
+          "DbConnLambdaVersionDoh3yyTV1okwJW9ce8lQuPyhoR424mBofKJZ5xIoFE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DbConnLambdaFunction"
               },
-              "CodeSha256": "AnLVlit5q9eR7kt2VqJk/b8oTeprYhPqE9AfJ3XuUsk="
+              "CodeSha256": "iDTMTv0dfM8Drbun61F2WY94pFF25K5/Q7sUdO6Xh30="
             }
           },
           "ApiGatewayRestApi": {
@@ -343,7 +367,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1574092918668": {
+          "ApiGatewayDeployment1574094396531": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -404,7 +428,7 @@
           "DbConnLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DbConnLambdaVersionStWKj9Fq6mdCaIZ2vrLoIJs0G2lMRxPJecMYPDAMCGs"
+              "Ref": "DbConnLambdaVersionDoh3yyTV1okwJW9ce8lQuPyhoR424mBofKJZ5xIoFE"
             }
           },
           "ServiceEndpoint": {
@@ -501,6 +525,16 @@
     "functions": {
       "dbConn": {
         "handler": "main.handler",
+        "vpc": {
+          "securityGroupIds": [
+            "sg-a1e6f4c3"
+          ],
+          "subnetIds": [
+            "subnet-53b45038",
+            "subnet-4a2a7830",
+            "subnet-1469d358"
+          ]
+        },
         "events": [
           {
             "http": {
@@ -559,8 +593,7 @@
         "package": {},
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs10.x",
-        "vpc": {}
+        "runtime": "nodejs10.x"
       }
     },
     "serviceFilename": "serverless.yml",
@@ -568,7 +601,7 @@
     "artifact": "D:\\wwwroot\\lambdaDB\\.serverless\\lambdadb.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/lambdadb/dev/1574093130059-2019-11-18T16:05:30.059Z",
+    "artifactDirectoryName": "serverless/lambdadb/dev/1574094607571-2019-11-18T16:30:07.571Z",
     "artifact": "lambdadb.zip"
   }
 }

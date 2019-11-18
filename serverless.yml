@@ -1,5 +1,5 @@
-#org: ygutfreund
-#app: lambdadb
+org: ygutfreund
+app: lambdadb
 # serverless.yml
 
 service: lambdadb
