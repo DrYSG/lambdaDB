@@ -141,7 +141,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambdadb/dev/1573840611788-2019-11-15T17:56:51.788Z/lambdadb.zip"
+          "S3Key": "serverless/lambdadb/dev/1574091081983-2019-11-18T15:31:21.983Z/lambdadb.zip"
         },
         "FunctionName": "lambdadb-dev-dbConn",
         "Handler": "main.handler",
@@ -329,7 +329,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1573840399224": {
+    "ApiGatewayDeployment1574090808704": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
