@@ -10,7 +10,9 @@
     "serverless": "^1.57.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/parcel ./server.js --target node",
+    "build-watch": "./node_modules/.bin/parcel watch ./server.js --target node",
+    "deploy": "./node_modules/.bin/serverless deploy"
   },
   "repository": {
     "type": "git",

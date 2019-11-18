@@ -1,15 +1,15 @@
-org: ygutfreund
-app: lambdadb
+#org: ygutfreund
+#app: lambdadb
 # serverless.yml
 
-service: aws-lambdadb
+service: lambdadb
 provider:
   name: aws
   stage: dev
   region: us-east-2
   runtime: nodejs10.x
 functions:
-  graphql:
+  dbConn:
     # this is formatted as <FILENAME>.<HANDLER>
     handler: main.handler
     events:

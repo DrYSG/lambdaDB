@@ -20,7 +20,7 @@ const rds = {
 
 
 async function query(q, client) {
-    const client = await pool.connect()
+    //const client = await pool.connect()
     let res
     try {
         await client.query('BEGIN')
@@ -38,7 +38,7 @@ async function query(q, client) {
 }
 
 exports.handler = async (event, context, cb) => {
-    const c = local
+    const c = rds
     const client = new Client({
         user: c.user,
         host: c.host,
