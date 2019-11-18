@@ -141,7 +141,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/lambdadb/dev/1574091081983-2019-11-18T15:31:21.983Z/lambdadb.zip"
+          "S3Key": "serverless/lambdadb/dev/1574093130059-2019-11-18T16:05:30.059Z/lambdadb.zip"
         },
         "FunctionName": "lambdadb-dev-dbConn",
         "Handler": "main.handler",
@@ -160,14 +160,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "DbConnLambdaVersionFkxXqDfAV66Dr7EM6Yei8b7lxtlNkgPa9lRglI7Ig": {
+    "DbConnLambdaVersionStWKj9Fq6mdCaIZ2vrLoIJs0G2lMRxPJecMYPDAMCGs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DbConnLambdaFunction"
         },
-        "CodeSha256": "BUebpnq4iojwrmcAIR9MliKzLp2IupKLCr3lTGhiA5U="
+        "CodeSha256": "AnLVlit5q9eR7kt2VqJk/b8oTeprYhPqE9AfJ3XuUsk="
       }
     },
     "ApiGatewayRestApi": {
@@ -329,7 +329,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1574090808704": {
+    "ApiGatewayDeployment1574092918668": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -390,7 +390,7 @@
     "DbConnLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DbConnLambdaVersionFkxXqDfAV66Dr7EM6Yei8b7lxtlNkgPa9lRglI7Ig"
+        "Ref": "DbConnLambdaVersionStWKj9Fq6mdCaIZ2vrLoIJs0G2lMRxPJecMYPDAMCGs"
       }
     },
     "ServiceEndpoint": {
