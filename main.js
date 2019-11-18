@@ -20,6 +20,7 @@ const aws = {
 
 exports.handler = async (event, context, callback) => {
     const c = aws
+    let respose = {}
     console.log(`aws credentials: ${JSON.stringify(c)}`)
     const client = new Client({
         user: c.user,
@@ -33,10 +34,19 @@ exports.handler = async (event, context, callback) => {
         console.log(`DB connected`)
     } catch (err) {
         console.error(`DB Connect Failed: ${JSON.stringify(err)}`)
+       response = {
+            "statusCode": 500,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify(err),
+            "isBase64Encoded": false
+        }
+        callback(null, JSON.stringify(response))
     }
 
     client.query('SELECT NOW()', (err, res) => {
-        var response = {
+        response = {
             "statusCode": 200,
             "headers": {
                 "Content-Type": "application/json"
@@ -46,7 +56,15 @@ exports.handler = async (event, context, callback) => {
         }
         if (err) {
             console.log('Database ' + err)
-            callback(null, 'Database ' + err);
+            callback(null, 'Database ' + err)
+            response = {
+                "statusCode": 500,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify(err),
+                "isBase64Encoded": false
+            }
         } else {
             callback(null, JSON.stringify(response))
         }
