@@ -20,6 +20,7 @@ const aws = {
 
 exports.handler = async (event, context, callback) => {
     const c = aws
+    console.log(`aws credentials: ${JSON.stringify(c)}`)
     const client = new Client({
         user: c.user,
         host: c.host,
