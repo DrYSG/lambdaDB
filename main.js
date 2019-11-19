@@ -12,15 +12,23 @@ const local = {
 
 const aws = {
     user: "postgres",
-    host: "ysgdb.cxeokcheapqj.us-east-2.rds.amazonaws.com",
-    database: "ysgdb",
+    host: "apollodb.cxeokcheapqj.us-east-2.rds.amazonaws.com",
+    database: "apollodb",
     password: "yechezkal",
     port: 5432
 }
 
+let response = {
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": 'none',
+    "isBase64Encoded": false
+}
+
 exports.handler = async (event, context, callback) => {
-    const c = aws
-    let respose = {}
+    const c = aws // switch to local for localDB
     console.log(`aws credentials: ${JSON.stringify(c)}`)
     const client = new Client({
         user: c.user,
@@ -28,51 +36,32 @@ exports.handler = async (event, context, callback) => {
         database: c.database,
         password: c.password,
         port: c.port
-    });
+    })
     try {
         await client.connect();
         console.log(`DB connected`)
     } catch (err) {
         console.error(`DB Connect Failed: ${JSON.stringify(err)}`)
-       response = {
-            "statusCode": 500,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "body": JSON.stringify(err),
-            "isBase64Encoded": false
-        }
-        callback(null, JSON.stringify(response))
+        response.body = err
+        callback(null, response)
     }
 
     client.query('SELECT NOW()', (err, res) => {
-        response = {
-            "statusCode": 200,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "body": JSON.stringify(res),
-            "isBase64Encoded": false
-        }
         if (err) {
             console.log('Database ' + err)
-            callback(null, 'Database ' + err)
-            response = {
-                "statusCode": 500,
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "body": JSON.stringify(err),
-                "isBase64Encoded": false
-            }
+            response.body = err
+            callback(null, response)
+            client.end()
         } else {
-            callback(null, JSON.stringify(response))
+            response.body = res
+            console.log(`response: ${JSON.stringify(res)}`)
+            callback(null, response)
+            client.end()
         }
-        client.end()
     })
 }
 
 
 if (process.env.USERNAME == 'ysg4206') {
-    this.handler(null, null, (_, txt) => {console.log(`callback: ${txt}`)})
+    this.handler(null, null, (_, txt) => {console.log(`callback: ${JSON.stringify(txt)}`)})
 } 
