@@ -1,0 +1,20 @@
+{
+  "name": "hello_world",
+  "version": "1.0.0",
+  "description": "hello world sample for NodeJS",
+  "main": "app.js",
+  "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
+  "author": "SAM CLI",
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "serverless": "^1.57.0"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/parcel ./server.js --target node",
+    "build-watch": "./node_modules/.bin/parcel watch ./server.js --target node",
+    "deploy": "./node_modules/.bin/serverless deploy --force"
+  }
+}
