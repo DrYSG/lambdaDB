@@ -7,11 +7,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Local",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\main.js"
+            "program": "${workspaceFolder}\\ysgExample\\main.js"
         },
         {
             "name": "Attach to Node Functions",
