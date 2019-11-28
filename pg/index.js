@@ -31,25 +31,22 @@ const handler = async (context, req) => {
             status: 400,
             body: err
         }
+        return context.res
     }
-
-    client.query('SELECT NOW()', (err, res) => {
-        if (err) {
-            console.log('Database ' + err)
-            context.res = {
-                status: 400,
-                body: err
-            }
-            client.end()
-        } else {
-            console.log(`response: ${JSON.stringify(res)}`)
-            context.res = {
-                status: 200,
-                body: res
-            }
-            client.end()
+    const rest = {}
+    try {
+        res = await client.query('SELECT NOW()')
+    } catch (err) {
+        console.log('Database ' + err)
+        context.res = {
+            status: 400,
+            body: err
         }
-    })
+        return context.res
+    }
+    return {
+        body: res.rows[0].now
+    }
 }
 
 module.exports = handler
