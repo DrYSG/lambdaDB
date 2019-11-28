@@ -1,5 +1,5 @@
 {
-  "name": "lambdaDB",
+  "name": "lambdadb",
   "version": "1.0.0",
   "description": "lambda function connect pg",
   "main": "main.js",
@@ -8,9 +8,6 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "./node_modules/.bin/parcel ./server.js --target node",
-    "build-watch": "./node_modules/.bin/parcel watch ./server.js --target node",
-    "deploy": "./node_modules/.bin/serverless deploy --force"
   },
   "repository": {
     "type": "git",
